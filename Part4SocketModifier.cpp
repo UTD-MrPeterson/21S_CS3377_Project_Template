@@ -8,8 +8,6 @@
 #include "Part4SocketModifier.h"
 #include "FileModifyException.h"
 
-using namespace std;
-
 Part4SocketModifier::~Part4SocketModifier() {
     // TODO: clean up anything needed
 }

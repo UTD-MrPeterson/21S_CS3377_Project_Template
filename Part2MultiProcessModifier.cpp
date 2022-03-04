@@ -10,8 +10,6 @@
 #include "PipeMaker.h"
 #include "FileModifyException.h"
 
-using namespace std;
-
 void Part2MultiProcessModifier::doSetup(IOType ioType) {
     // TODO: fill in
 }

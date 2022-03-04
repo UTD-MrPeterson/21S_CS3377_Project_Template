@@ -6,8 +6,6 @@
 #include "Part3ThreadedModifier.h"
 #include "FileModifyException.h"
 
-using namespace std;
-
 void Part3ThreadedModifier::doSetup(IOType ioType) {
     // TODO: fill in
 }

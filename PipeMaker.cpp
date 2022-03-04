@@ -9,12 +9,10 @@
 #include "PipeMaker.h"
 #include "FileModifyException.h"
 
-using namespace std;
-
 PipeMaker::PipeMaker() {
     int rc = pipe(pipeFDs);
     if ( rc < 0) {
-        string errorString = "Unable to create pipe: ";
+        std::string errorString = "Unable to create pipe: ";
         errorString.append(strerror(errno));
         throw FileModifyException(errorString);
     }
@@ -33,7 +31,7 @@ int PipeMaker::setUpToRead() {
     int usedFD = pipeFDs[0];
     int rc = dup2(usedFD, STDIN_FILENO);
     if ( rc < 0) {
-        string errorString = "Unable to dup read pipe: ";
+        std::string errorString = "Unable to dup read pipe: ";
         errorString.append(strerror(errno));
         throw FileModifyException(errorString);
     }

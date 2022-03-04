@@ -6,8 +6,6 @@
 
 #include <string>
 
-using namespace std;
-
 const char* Util::usage = "FileModifier { 1 | 2 {R|W} |3 | 4 {R|W} }\n";
 const char* Util::inputFilename = "input";
 const char* Util::outputFilename = "output";
@@ -23,7 +21,7 @@ ModifierType Util::toModifierType(int type) {
         case 4:
             return ModifierType::IPC_MODIFIER;
         default:
-            throw FileModifyException("Unknown modifier type (int) " + to_string(type));
+            throw FileModifyException("Unknown modifier type (int) " + std::to_string(type));
     }
 }
 
@@ -36,6 +34,6 @@ IOType Util::toIOType(int type) {
         case 3:
             return IOType::WRITE;
         default:
-            throw FileModifyException("Unknown IO type (int) " + to_string(type));
+            throw FileModifyException("Unknown IO type (int) " + std::to_string(type));
     }
 }
