@@ -11,9 +11,8 @@
 struct EntryInfo {
     time_t timestamp;
     int itemID;
-    char* itemName;
-    int quantity;
     float price;
+    char* itemName;
 };
 
 enum class ModifierType {

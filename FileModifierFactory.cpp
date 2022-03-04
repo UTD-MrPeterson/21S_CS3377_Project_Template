@@ -11,8 +11,6 @@
 #include "Part3ThreadedModifier.h"
 #include "Part4SocketModifier.h"
 
-using namespace std;
-
 // Create the proper modifier based on which part of the project you're doing
 Modifier* FileModifierFactory::createModifier(ModifierType type, IOType ioType, int argc, char** argv) {
     Modifier* modifier = nullptr;
@@ -42,7 +40,7 @@ Modifier* FileModifierFactory::createModifier(ModifierType type, IOType ioType, 
             modifier = new Part4SocketModifier();
             break;
         default:
-            throw FileModifyException("Unknown modifier " + to_string(static_cast<int>(type)) + Util::usage);
+            throw FileModifyException("Unknown modifier " + std::to_string(static_cast<int>(type)) + Util::usage);
     }
 
     modifier->doSetup(ioType);

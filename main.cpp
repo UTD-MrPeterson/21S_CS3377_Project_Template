@@ -7,8 +7,6 @@
 #include "FileModifierFactory.h"
 #include "FileModifyException.h"
 
-using namespace std;
-
 //---------------------------------------------------------
 // Arguments:
 // ModifierType: 1-4, corresponds to the project parts
@@ -30,7 +28,7 @@ int main(int argc, char** argv) {
     unlink(Util::outputFilename);
 
     if ( argc < 2) {
-        cerr << "No type specified.\n" << Util::usage;
+        std::cerr << "No type specified.\n" << Util::usage;
         exit(1);
     }
 
@@ -38,12 +36,12 @@ int main(int argc, char** argv) {
 
     // Turn argv[1] (first argument) into the proper modifier type
     try {
-        modifierType = Util::toModifierType(stoi(argv[1]));
+        modifierType = Util::toModifierType(std::stoi(argv[1]));
     } catch ( FileModifyException e) {
-        cerr << "Unable to determine type of " << argv[1] << ": " << e.what() << "\n" << Util::usage;
+        std::cerr << "Unable to determine type of " << argv[1] << ": " << e.what() << "\n" << Util::usage;
         exit(1);
-    } catch ( exception e) {
-        cerr << "Is " << argv[1] << " an integer? Couldn't convert it to a ModifierType:\n" << Util::usage;
+    } catch ( std::exception e) {
+        std::cerr << "Is " << argv[1] << " an integer? Couldn't convert it to a ModifierType:\n" << Util::usage;
         exit(1);
     }
 
@@ -51,11 +49,11 @@ int main(int argc, char** argv) {
     IOType ioType = IOType::READ_AND_WRITE;
     if ( argc == 3) {
         try {
-            ioType = Util::toIOType(stoi(argv[2]));
+            ioType = Util::toIOType(std::stoi(argv[2]));
         } catch ( FileModifyException e) {
-            cerr << "Unable to determine I/O type of " << argv[2] << ": " << e.what() << "\n" << Util::usage;
-        } catch ( exception e) {
-            cerr << "Is " << argv[2] << " an integer? Couldn't convert it to an IOType\n" << Util::usage;
+            std::cerr << "Unable to determine I/O type of " << argv[2] << ": " << e.what() << "\n" << Util::usage;
+        } catch ( std::exception e) {
+            std::cerr << "Is " << argv[2] << " an integer? Couldn't convert it to an IOType\n" << Util::usage;
         }
     }
 
@@ -64,20 +62,20 @@ int main(int argc, char** argv) {
     try {
         modifier = FileModifierFactory::createModifier(modifierType, ioType, argc, argv);
     } catch(FileModifyException e) {
-        cerr << "Error creating modifier object: " << e.what();
+        std::cerr << "Error creating modifier object: " << e.what();
         exit(1);
-    } catch ( exception e) {
-        cerr << "Error creating modifier object: " << e.what();
+    } catch ( std::exception e) {
+        std::cerr << "Error creating modifier object: " << e.what();
         exit(1);
     }
 
     try {
         modifier->modifyAndCopyFile(Util::inputFilename, Util::outputFilename);
     } catch (FileModifyException e) {
-        cerr << "Error modifying file: " << e.what();
+        std::cerr << "Error modifying file: " << e.what();
         exit(1);
-    } catch ( exception e) {
-        cerr << "Error modifying file: " << e.what();
+    } catch ( std::exception e) {
+        std::cerr << "Error modifying file: " << e.what();
         exit(1);
     }
 
@@ -95,7 +93,7 @@ int main(int argc, char** argv) {
     exit(1);
 #endif
     if ( error) {
-        cerr << "Unable to start file checker!" << strerror(errno) << endl;
+        std::cerr << "Unable to start file checker!" << strerror(errno) << std::endl;
         exit(1);
     }
 }
