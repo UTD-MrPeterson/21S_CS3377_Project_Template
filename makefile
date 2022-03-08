@@ -4,19 +4,19 @@ testPartThree: clean compile testThreaded
 testPartFour: clean compile testSocket
 
 clean:
-	rm -f cmake-build-debug/test
+	rm -f cmake-build-debug/21S_CS3377_Project
 
 compile: main.cpp
-	g++ -I . -o cmake-build-debug/test main.cpp FileModifierFactory.cpp Part1SimpleFileModifier.cpp Part2MultiProcessModifier.cpp Part3ThreadedModifier.cpp Part4SocketModifier.cpp PipeMaker.cpp Util.cpp
+	g++ -I . -pthread -o cmake-build-debug/21S_CS3377_Project main.cpp FileModifierFactory.cpp Part1SimpleFileModifier.cpp Part2MultiProcessModifier.cpp Part3ThreadedModifier.cpp Part4SocketModifier.cpp PipeMaker.cpp Util.cpp FileReader.cpp FileWriter.cpp
 
 testSimple:
-	cmake-build-debug/test 1
+	cd cmake-build-debug && ./21S_CS3377_Project 1
 
 testMultiProcess:
-	cmake-build-debug/test 2 2
+	cd cmake-build-debug && ./21S_CS3377_Project 2 2
 
 testThreaded:
-	cmake-build-debug/test 3
+	cd cmake-build-debug && ./21S_CS3377_Project 3
 
 testSocket:
-	cmake-build-debug/test 4 2
+	cd cmake-build-debug && ./21S_CS3377_Project 4 2
